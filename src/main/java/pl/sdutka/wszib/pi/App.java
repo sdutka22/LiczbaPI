@@ -25,7 +25,9 @@ public class App {
             System.out.println("Thread interrupted: " + e.getMessage());    
         }
 
-        pi = 4.0 * ((double) circleHits / (double) totalShots);
+        synchronized (App.class) {
+            pi = 4.0 * ((double) circleHits / (double) totalShots);
+        }
 
         String output = "Ilosc strzałów: " + totalShots + "\n" +
                 "Ilosc trafień: " + circleHits + "\n" +

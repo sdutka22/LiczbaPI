@@ -5,7 +5,7 @@ public class ThreadsPi implements Runnable {
     Random rand = new Random();
     @Override
     public void run() {
-        int totalShots = 100000;
+        int totalShots = 10000;
         int hitsInsideCircle = 0;
         double r = 1;
 
@@ -17,8 +17,9 @@ public class ThreadsPi implements Runnable {
                 hitsInsideCircle++;
             }
         }
-        App.totalShots += totalShots;
-        App.circleHits += hitsInsideCircle;
-
+        synchronized (App.class) {
+            App.totalShots += totalShots;
+            App.circleHits += hitsInsideCircle;
+        }
     }
 }
